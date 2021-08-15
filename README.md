@@ -1,6 +1,6 @@
 new WebRTC features added (differences from the main repository)
 -------------------------------------------------
-- added file transder functionality
+- added file transfer functionality
 - added audio call functionality
 
 Note: Run the following to quickly host the files in a web server for testing (require Python3 installed)
@@ -91,5 +91,5 @@ which in turn was inspired by https://github.com/cjb/serverless-webrtc
 
 other useful references
 ----
-https://webrtc.github.io/samples/src/content/peerconnection/audio/
-https://github.com/svarunan/serverless-webrtc
+- https://webrtc.github.io/samples/src/content/peerconnection/audio/
+- https://github.com/svarunan/serverless-webrtc
