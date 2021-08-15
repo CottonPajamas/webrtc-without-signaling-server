@@ -1,3 +1,12 @@
+new WebRTC features added (differences from the main repository)
+-------------------------------------------------
+- added file transder functionality
+- added audio call functionality
+
+Note: Run the following to quickly host the files in a web server for testing (require Python3 installed)
+> python3 -m http.server 8080
+
+
 webrtc peer to peer chat without signaling server
 -------------------------------------------------
 
@@ -78,3 +87,9 @@ misc
 inspired by https://github.com/xem/miniWebRTC
 
 which in turn was inspired by https://github.com/cjb/serverless-webrtc
+
+
+other useful references
+----
+https://webrtc.github.io/samples/src/content/peerconnection/audio/
+https://github.com/svarunan/serverless-webrtc

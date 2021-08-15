@@ -3,9 +3,22 @@ function clickcreateoffer() {
   document.getElementById('buttoncreateoffer').disabled = true;
   document.getElementById('spanoffer').classList.toggle('invisible');
   peerConnection = createPeerConnection(lasticecandidate);
-  dataChannel = peerConnection.createDataChannel('chat');
-  dataChannel.onopen = datachannelopen;
-  dataChannel.onmessage = datachannelmessage;
+  // chat channel
+  _chatChannel = peerConnection.createDataChannel('chatChannel');
+  _chatChannel.onopen = chatChannelOnOpen;
+  _chatChannel.onclose = chatChannelOnClose;
+  _chatChannel.onmessage = chatChannelOnMessage;
+  // file channel
+  _fileChannel = peerConnection.createDataChannel('fileChannel');
+  _fileChannel.onopen = fileChannelOnOpen;
+  _fileChannel.onclose = fileChannelOnClose;
+  _fileChannel.onmessage = fileChannelOnMessage;
+  // add mic
+  addMicAudio(createAndSetOffer);
+}
+
+// creating offer
+function createAndSetOffer() {
   createOfferPromise = peerConnection.createOffer();
   createOfferPromise.then(createOfferDone, createOfferFailed);
 }

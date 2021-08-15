@@ -2,10 +2,15 @@ function clickofferpasted() {
   console.log('clickremoteoffer');
   document.getElementById('buttonofferpasted').disabled = true;
   peerConnection = createPeerConnection(lasticecandidate);
-  peerConnection.ondatachannel = handledatachannel;
+  peerConnection.ondatachannel = handleDataChannel;
   textelement = document.getElementById('textoffer');
   textelement.readOnly = true;
   offer = JSON.parse(textelement.value);
+  // add mic
+  addMicAudio(createAndSetAnswer);
+}
+
+function createAndSetAnswer() {
   setRemotePromise = peerConnection.setRemoteDescription(offer);
   setRemotePromise.then(setRemoteDone, setRemoteFailed);
 }
@@ -49,9 +54,17 @@ function lasticecandidate() {
   textelement.value = JSON.stringify(answer);
 }
 
-function handledatachannel(event) {
-  console.log('handledatachannel');
-  dataChannel = event.channel;
-  dataChannel.onopen = datachannelopen;
-  dataChannel.onmessage = datachannelmessage;
+function handleDataChannel(event) {
+  if (event.channel.label == "chatChannel") {
+    _chatChannel = event.channel;
+    _chatChannel.onopen = chatChannelOnOpen;
+    _chatChannel.onclose = chatChannelOnClose;
+    _chatChannel.onmessage = chatChannelOnMessage;
+  }
+  if (event.channel.label == "fileChannel") {
+    _fileChannel = event.channel;
+    _fileChannel.onopen = fileChannelOnOpen;
+    _fileChannel.onclose = fileChannelOnClose;
+    _fileChannel.onmessage = fileChannelOnMessage;
+  }
 }
