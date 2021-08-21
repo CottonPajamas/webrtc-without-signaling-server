@@ -242,7 +242,6 @@ function handleSuccess(stream) {
 }
 
 function handleError(error) {
-  alert(90909);
   const errorMessage = 'navigator.MediaDevices.getUserMedia error: ' + error.message + ' ' + error.name;
   console.log(errorMessage);
 }
